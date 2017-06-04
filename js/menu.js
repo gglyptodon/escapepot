@@ -16,6 +16,8 @@ var menuState = {
         button.onInputOut.add(out, this);
         button.onInputUp.add(this.startup, this);
 
+        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        placeholdertext = game.add.text(50,50,"mix a potion, or something\n click button to start", style);
     }
 
 };

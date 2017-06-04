@@ -34,7 +34,7 @@ var redoState = {
 
         game.stage.backgroundColor = '#555555';
         background = game.add.tileSprite(0, 0, 800, 600, 'backgroundredo');
-        text = game.add.text(32, 32, 'fucking text', { font: "55px Arial", fill: "#000065" });
+        text = game.add.text(32, 32, '', { font: "55px Arial", fill: "#000065" });
         this.explode();
 
 
