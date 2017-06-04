@@ -1,4 +1,10 @@
 var menuState = {
+
+    startup: function(){
+        console.log('play here...');
+        game.state.start('play');
+    },
+
     create: function(){
         game.stage.backgroundColor = '#555555';
 
@@ -8,6 +14,8 @@ var menuState = {
 
         button.onInputOver.add(over, this);
         button.onInputOut.add(out, this);
-        button.onInputUp.add(up, this);
+        button.onInputUp.add(this.startup, this);
+
     }
+
 };
