@@ -7,6 +7,7 @@ var redoState = {
   if (countdown == 0){
       this.displaybutton();
       timer.stop();
+      text.setText('Start from scratch...');
   }
 
   },
