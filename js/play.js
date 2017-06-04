@@ -1,3 +1,5 @@
+
+
 var playState = {
     create: function(){
         var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -9,6 +11,12 @@ var playState = {
 
     submit: function(){
         // todo, check status of entered data and decide whether to go to redo or win.
-        game.state.start('win');
+        var rnum = Math.random();
+        console.log(rnum);
+        if (rnum > 0.5){
+            game.state.start('win');
+        }else{
+            game.state.start('redo');
+        }
     }
 };
