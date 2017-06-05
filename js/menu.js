@@ -8,7 +8,7 @@ var menuState = {
     create: function(){
         game.stage.backgroundColor = '#555555';
 
-        background = game.add.tileSprite(0, 0, 800, 600, 'background');
+        background = game.add.tileSprite(0, 0, 800, 600, 'backgroundmenu');
 
         button = game.add.button(game.world.centerX/2, 400, 'buttonmenu', actionOnClick, this, 1, 0, 2);
 

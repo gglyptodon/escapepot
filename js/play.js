@@ -9,8 +9,14 @@ var playState = {
     resmd5: [],
     numInputs: 4,
     create: function(){
-        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        placeholdertext = game.add.text(50,50,"ingredient   direction  times", style);
+        background = game.add.tileSprite(0, 0, 800, 600, 'backgroundplay');
+
+        var style = { font: "bold 16px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        // headers
+        var header_y = 50;
+        ingredientHeader = game.add.text(50,header_y,"ingredient", style);
+        directionHeader = game.add.text(200, header_y, "stir cw/ccw", style);
+        timesHeader = game.add.text(350, header_y, "times to stir (0-9999)", style);
 
         button = game.add.button(game.world.centerX/2, 400, 'buttonmix', actionOnClick, this, 1, 0, 2);
         button.onInputUp.add(this.submit, this);
