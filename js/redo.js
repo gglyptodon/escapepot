@@ -17,7 +17,7 @@ var redoState = {
 
   },
   displaybutton: function(){
-        button = game.add.button(game.world.centerX/2, 400, 'buttonredo', actionOnClick, this, 2, 1, 0);
+        button = game.add.button(game.world.centerX/2, 400, 'buttonredo', actionOnClick, this, 1, 0, 2);
         button.onInputUp.add(this.backtostart, this);
 
   },

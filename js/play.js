@@ -12,7 +12,7 @@ var playState = {
         var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
         placeholdertext = game.add.text(50,50,"ingredient   direction  times", style);
 
-        button = game.add.button(game.world.centerX/2, 400, 'button', actionOnClick, this, 2, 1, 0);
+        button = game.add.button(game.world.centerX/2, 400, 'buttonmix', actionOnClick, this, 1, 0, 2);
         button.onInputUp.add(this.submit, this);
 
         game.add.plugin(PhaserInput.Plugin);
@@ -66,7 +66,7 @@ var playState = {
     are_inputs_valid: function(){
         var isCorrect = true;
         var pass_vals =  ["b01b321b66287166bd1552f21a04d8bd", "0b7694d01b81335a241c115c40c033ca", "d39bc8d3d15d9a9000d1ec7c6987eeee", "fb7a1dc716a04f7082894df494e0d0fa"];
-        pass_vals = ["d3f962577635555fef4834d426322992", "aa6f82751dc37a7341775f3a9eac3981", "d39bc8d3d15d9a9000d1ec7c6987eeee", "67b3497c50d3874dec21af0011a4b95c"];
+        pass_vals = ["c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f75849b", "cfcd208495d565ef66e7dff9f98764da", "c4ca4238a0b923820dcc509a6f75849b"]
          //i1...item4
         var pass_times = [1,2,3,4];
 
