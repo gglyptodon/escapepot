@@ -1,12 +1,30 @@
-var timer; var countdown;
+var timer;
+var countdown;
 var text;
 var redoState = {
+  timeToWait: 0.1*60,
+
+  getStorageTimer: function(){
+        if (localStorage.getItem("escapepot_localstoragetimer") === 0 || localStorage.getItem("escapepot_localstoragetimer") === undefined) {
+            countdown = this.timeToWait;
+            localStorage.setItem("escapepot_localstoragetimer", this.timeToWait);
+            //console.log("reset localstorage", localStorage.getItem("escapepot_localstoragetimer") )
+
+        }
+        else{
+            //console.log("local storage was not 0 / undefined", localStorage.getItem("escapepot_localstoragetimer") )
+            countdown = localStorage.getItem("escapepot_localstoragetimer");
+
+        }
+  },
   update: function(){
-      text.setText('Restart in ' + countdown.toFixed(0) + ' seconds');
+      text.setText('Restart in ' + countdown + ' seconds');
+      localStorage.setItem("escapepot_localstoragetimer", countdown);
 
   if (countdown == 0){
       this.displaybutton();
       timer.stop();
+      localStorage.setItem("escapepot_localstoragetimer", 0);
       text.setText('Start from scratch...');
   }
 
@@ -27,15 +45,15 @@ var redoState = {
   },
   create: function(){
         timer = game.time.create(false);
-        countdown  = 0.1 * 60;
+        this.getStorageTimer();
 
         timer.loop(1000, function(){ countdown-- }, this);
         timer.start();
 
         game.stage.backgroundColor = '#555555';
         background = game.add.tileSprite(0, 0, 800, 600, 'backgroundredo');
-        text = game.add.text(32, 32, 'fucking text', { font: "55px Arial", fill: "#000065" });
-        this.explode();
+        text = game.add.text(32, 32, '', { font: "55px Arial", fill: "#000065" });
+       // this.explode();
 
 
 
