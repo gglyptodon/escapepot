@@ -9,10 +9,16 @@ var playState = {
     resmd5: [],
     numInputs: 4,
     create: function(){
-        var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        placeholdertext = game.add.text(50,50,"four potion ingredients and mixing \nforms coming soon...", style);
+        background = game.add.tileSprite(0, 0, 800, 600, 'backgroundplay');
 
-        button = game.add.button(game.world.centerX/2, 400, 'button', actionOnClick, this, 2, 1, 0);
+        var style = { font: "bold 16px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
+        // headers
+        var header_y = 50;
+        ingredientHeader = game.add.text(50,header_y,"ingredient", style);
+        directionHeader = game.add.text(200, header_y, "stir cw/ccw", style);
+        timesHeader = game.add.text(350, header_y, "times to stir (0-9999)", style);
+
+        button = game.add.button(game.world.centerX/2, 400, 'buttonmix', actionOnClick, this, 1, 0, 2);
         button.onInputUp.add(this.submit, this);
 
         game.add.plugin(PhaserInput.Plugin);
@@ -21,7 +27,8 @@ var playState = {
             var j = i+1;
             var spacing = 90;
             this.ingredientTxt[i] = game.add.inputField(10, spacing*j);
-            this.ingredientBtnCW[i] = game.add.button(game.world.centerX/2, spacing*j, 'cw', actionOnClick, this, 2, 1, 0);
+            // button sprite frame numbers on end are over, out, down
+            this.ingredientBtnCW[i] = game.add.button(game.world.centerX/2, spacing*j, 'cw', actionOnClick, this, 2, 0, 0);
 
             this.ingredientBtnCW[i].onInputUp.add(this.toggleCW.bind(this,i), this);
             this.ingredientBtnCCW[i] = game.add.button(game.world.centerX/2+50, spacing*j, 'ccw', actionOnClick, this, 2, 1, 0);
@@ -34,14 +41,20 @@ var playState = {
 
     },
     toggleCW: function(index){
-    this.ingredientDir[index] = 0;
-    console.log(this.ingredientDir, index);
+        this.ingredientDir[index] = 0;
+        console.log(this.ingredientDir, index);
+        // re-color buttons
+        this.ingredientBtnCW[index].setFrames(2, 0, 0);
+        this.ingredientBtnCCW[index].setFrames(2, 1, 0);
 
     },
 
     toggleCCW: function(index){
-    this.ingredientDir[index] = 1;
+        this.ingredientDir[index] = 1;
         console.log(this.ingredientDir, index);
+        this.ingredientBtnCW[index].setFrames(2, 1, 0);
+        this.ingredientBtnCCW[index].setFrames(2, 0, 0);
+
 
     },
 
@@ -58,7 +71,8 @@ var playState = {
 
     are_inputs_valid: function(){
         var isCorrect = true;
-        var pass_vals =  ["b01b321b66287166bd1552f21a04d8bd", "0b7694d01b81335a241c115c40c033ca", "d39bc8d3d15d9a9000d1ec7c6987eeee", "fb7a1dc716a04f7082894df494e0d0fa"]
+        var pass_vals =  ["b01b321b66287166bd1552f21a04d8bd", "0b7694d01b81335a241c115c40c033ca", "d39bc8d3d15d9a9000d1ec7c6987eeee", "fb7a1dc716a04f7082894df494e0d0fa"];
+        pass_vals = ["c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f75849b", "cfcd208495d565ef66e7dff9f98764da", "c4ca4238a0b923820dcc509a6f75849b"]
          //i1...item4
         var pass_times = [1,2,3,4];
 
