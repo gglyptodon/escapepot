@@ -18,7 +18,7 @@ var playState = {
         directionHeader = game.add.text(200, header_y, "stir cw/ccw", style);
         timesHeader = game.add.text(350, header_y, "times to stir (0-9999)", style);
 
-        button = game.add.button(game.world.centerX/2, 400, 'buttonmix', actionOnClick, this, 1, 0, 2);
+        button = game.add.button(game.world.centerX/2, 450, 'buttonmix', actionOnClick, this, 1, 0, 2);
         button.onInputUp.add(this.submit, this);
 
         game.add.plugin(PhaserInput.Plugin);
@@ -68,7 +68,8 @@ var playState = {
     are_inputs_valid: function(){
         var isCorrect = true;
         // set pass values below
-        var pass_vals = ["c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f75849b", "cfcd208495d565ef66e7dff9f98764da", "c4ca4238a0b923820dcc509a6f75849b"]
+        var pass_vals = ["33eec31bf8c473fc7872d9bc9fac4da5", "46b19abe635b522d5dfa47e9a84bef0e", "75105cd35e32d23814586c83b594c7c2", "7689ac582fe7db249c37a05d757f7132"]
+        //var pass_vals = ["c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f75849b", "cfcd208495d565ef66e7dff9f98764da", "c4ca4238a0b923820dcc509a6f75849b"]
          //i1...item4
 
 

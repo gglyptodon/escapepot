@@ -1,5 +1,5 @@
 var menuState = {
-    timeToWait: 0.1*60,
+    timeToWait: 0.1*3000,
     isStillWaiting: function() {
         console.log("check waiting", localStorage.getItem("escapepot_localstoragetimer"));
         if (localStorage.getItem("escapepot_localstoragetimer") > 0 ) {
@@ -38,7 +38,7 @@ var menuState = {
         button.onInputUp.add(this.startup, this);
 
         var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        placeholdertext = game.add.text(50,50,"mix a potion, or something\n click button to start", style);
+        placeholdertext = game.add.text(50,50,"mix a potion,\n click button to start", style);
     }
 
 };
