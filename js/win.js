@@ -5,7 +5,7 @@ var winState = {
 
         background = game.add.tileSprite(0, 0, 800, 600, 'backgroundwin');
         var style = { font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
-        placeholdertext = game.add.text(50,50,"You mixed your\npotion correctly,\n you're free!", style);
+        placeholdertext = game.add.text(50,50,"Congrats! You've\nsuccessfully\nmixed the potion.\nNow you can\nsave Ethan\nfrom eternal\nsleep.", style);
 
         button = game.add.button(game.world.centerX/2, 400, 'buttonrestart', actionOnClick, this, 1, 0, 2);
         button.onInputUp.add(this.backtostart, this);

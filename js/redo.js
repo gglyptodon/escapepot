@@ -2,7 +2,7 @@ var timer;
 var countdown;
 var text;
 var redoState = {
-  timeToWait: 0.1*3000,
+  timeToWait: 0.1*30,
 
   getStorageTimer: function(){
         if (localStorage.getItem("escapepot_localstoragetimer") === 0 || localStorage.getItem("escapepot_localstoragetimer") === undefined) {
@@ -50,9 +50,12 @@ var redoState = {
         timer.loop(1000, function(){ countdown-- }, this);
         timer.start();
 
-        game.stage.backgroundColor = '#555555';
-        background = game.add.tileSprite(0, 0, 800, 600, 'backgroundredo');
+        game.stage.backgroundColor = '#b9c1c9';
+        background = game.add.tileSprite(0, (600 - 382)/2, 800, 383, 'backgroundredo');
         text = game.add.text(32, 32, '', { font: "55px Arial", fill: "#000065" });
+        var style = { font: "bold 32px Arial", fill: "#000065", boundsAlignH: "center", boundsAlignV: "middle" };
+
+        placeholdertext = game.add.text(50,500,"Oh no, you messed up. You have to clean the\npotions room before you can try again", style);
         this.explode();
 
   }

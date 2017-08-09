@@ -64,18 +64,26 @@ var playState = {
             game.state.start('redo');
         }
     },
-
+    clean_input: function(x){
+        x = x.toLowerCase();
+        x = x.replace(/\s/g, '');
+        return x;
+    },
     are_inputs_valid: function(){
         var isCorrect = true;
         // set pass values below
-        var pass_vals = ["33eec31bf8c473fc7872d9bc9fac4da5", "46b19abe635b522d5dfa47e9a84bef0e", "75105cd35e32d23814586c83b594c7c2", "7689ac582fe7db249c37a05d757f7132"]
+        // winning set pre-cleaning
+        //var pass_vals = ["33eec31bf8c473fc7872d9bc9fac4da5", "46b19abe635b522d5dfa47e9a84bef0e", "75105cd35e32d23814586c83b594c7c2", "7689ac582fe7db249c37a05d757f7132"];
+        // "moon" in upper left and everything else unchanged for testing
+        var pass_vals = ["464e81449b4c906ba4d8bbc5e0114cbe", "cfcd208495d565ef66e7dff9f98764da", "cfcd208495d565ef66e7dff9f98764da", "cfcd208495d565ef66e7dff9f98764da"];
         //var pass_vals = ["c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f75849b", "cfcd208495d565ef66e7dff9f98764da", "c4ca4238a0b923820dcc509a6f75849b"]
          //i1...item4
 
 
         var hashed_inputs = [];
         for (i = 0; i < this.numInputs; i++) {
-            hashed_inputs[i] = CryptoJS.MD5(this.ingredientTxt[i].value+this.ingredientDir[i]+this.ingredientTimes[i].value).toString();
+            var cleaned_concatenated = this.clean_input(this.ingredientTxt[i].value+this.ingredientDir[i]+this.ingredientTimes[i].value);
+            hashed_inputs[i] = CryptoJS.MD5(cleaned_concatenated).toString();
             this.resmd5[i] = hashed_inputs[i];
             if (hashed_inputs[i].toString() != pass_vals[i]){
                  isCorrect = false
