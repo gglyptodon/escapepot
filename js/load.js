@@ -8,6 +8,7 @@ var loadState = {
         // stir direction buttons
         game.load.spritesheet('cw', 'assets/btn/cw.png', 32, 32);
         game.load.spritesheet('ccw', 'assets/btn/ccw.png', 32, 32);
+        game.load.spritesheet('nomix', 'assets/btn/x.png', 32, 32);
 
         // backgrounds
         game.load.image('backgroundmenu','assets/img/bg_menu.png');

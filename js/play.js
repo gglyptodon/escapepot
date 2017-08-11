@@ -3,6 +3,7 @@
 var playState = {
     ingredientTxt: [],
     ingredientBtnCW: [],
+    ingredientBtnX: [],
     ingredientBtnCCW: [],
     ingredientDir: [],
     ingredientTimes: [],
@@ -28,14 +29,17 @@ var playState = {
             var spacing = 90;
             this.ingredientTxt[i] = game.add.inputField(10, spacing*j);
             // button sprite frame numbers on end are over, out, down
-            this.ingredientBtnCW[i] = game.add.button(game.world.centerX/2, spacing*j, 'cw', actionOnClick, this, 2, 0, 0);
-
+            this.ingredientBtnCW[i] = game.add.button(game.world.centerX/2, spacing*j, 'cw', actionOnClick, this, 2, 1, 0);
             this.ingredientBtnCW[i].onInputUp.add(this.toggleCW.bind(this,i), this);
-            this.ingredientBtnCCW[i] = game.add.button(game.world.centerX/2+50, spacing*j, 'ccw', actionOnClick, this, 2, 1, 0);
 
+            this.ingredientBtnX[i] = game.add.button(game.world.centerX/2 + 40, spacing*j, 'nomix', actionOnClick, this, 2, 0, 0);
+            this.ingredientBtnX[i].onInputUp.add(this.toggleX.bind(this,i), this);
+
+
+            this.ingredientBtnCCW[i] = game.add.button(game.world.centerX/2 + 80, spacing*j, 'ccw', actionOnClick, this, 2, 1, 0);
             this.ingredientBtnCCW[i].onInputUp.add(this.toggleCCW.bind(this,i), this);
 
-            this.ingredientDir[i] = 0 ;
+            this.ingredientDir[i] = 2 ; //two stands for not mixing
             this.ingredientTimes[i] =  game.add.inputField(350, spacing*j);
         }
 
@@ -45,6 +49,7 @@ var playState = {
         console.log(this.ingredientDir, index);
         // re-color buttons
         this.ingredientBtnCW[index].setFrames(2, 0, 0);
+        this.ingredientBtnX[index].setFrames(2, 1, 0);
         this.ingredientBtnCCW[index].setFrames(2, 1, 0);
 
     },
@@ -52,10 +57,17 @@ var playState = {
     toggleCCW: function(index){
         this.ingredientDir[index] = 1;
         this.ingredientBtnCW[index].setFrames(2, 1, 0);
+        this.ingredientBtnX[index].setFrames(2, 1, 0);
         this.ingredientBtnCCW[index].setFrames(2, 0, 0);
-
-
     },
+
+    toggleX: function(index){
+        this.ingredientDir[index] = 2;
+        this.ingredientBtnCW[index].setFrames(2, 1, 0);
+        this.ingredientBtnX[index].setFrames(2, 0, 0);
+        this.ingredientBtnCCW[index].setFrames(2, 1, 0);
+    },
+
 
     submit: function(){
         if (this.are_inputs_valid()){
@@ -72,12 +84,10 @@ var playState = {
     are_inputs_valid: function(){
         var isCorrect = true;
         // set pass values below
-        // winning set pre-cleaning
-        //var pass_vals = ["33eec31bf8c473fc7872d9bc9fac4da5", "46b19abe635b522d5dfa47e9a84bef0e", "75105cd35e32d23814586c83b594c7c2", "7689ac582fe7db249c37a05d757f7132"];
-        // "moon" in upper left and everything else unchanged for testing
-        var pass_vals = ["464e81449b4c906ba4d8bbc5e0114cbe", "cfcd208495d565ef66e7dff9f98764da", "cfcd208495d565ef66e7dff9f98764da", "cfcd208495d565ef66e7dff9f98764da"];
-        //var pass_vals = ["c4ca4238a0b923820dcc509a6f75849b", "c4ca4238a0b923820dcc509a6f75849b", "cfcd208495d565ef66e7dff9f98764da", "c4ca4238a0b923820dcc509a6f75849b"]
-         //i1...item4
+        // winning set 
+        var pass_vals =["158b941fced3f73107530b88d6c13118", "e4c93f9a422dedc7b0447685870115eb", "1246cd6b39e2026507ce4296bd9f36ae", "b00b60c596a088747e09bda74f1c8c73"];
+        // "moon" in upper left and everything else blank / cw for testing
+        //var pass_vals = ["464e81449b4c906ba4d8bbc5e0114cbe", "cfcd208495d565ef66e7dff9f98764da", "cfcd208495d565ef66e7dff9f98764da", "cfcd208495d565ef66e7dff9f98764da"];
 
 
         var hashed_inputs = [];
