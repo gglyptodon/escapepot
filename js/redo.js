@@ -2,8 +2,8 @@ var timer;
 var countdown;
 var text;
 var redoState = {
-  timeToWait: 0.1*3000,
-
+  timeToWait: globalTimer,
+  override: '',
   getStorageTimer: function(){
         if (localStorage.getItem("escapepot_localstoragetimer") === 0 || localStorage.getItem("escapepot_localstoragetimer") === undefined) {
             countdown = this.timeToWait;
@@ -43,7 +43,18 @@ var redoState = {
         console.log("back to start");
         game.state.start('menu');
   },
+  passtostart(){
+        console.log('pass to start');
+        pwmd5 = CryptoJS.MD5(this.override.value).toString();
+        if (pwmd5 == "5bf31c83bbc3f287fa3ebef696149bb8"){
+            localStorage.setItem("escapepot_localstoragetimer", 0);
+            this.backtostart();
+        }
+        console.log(pwmd5);
+  },
   create: function(){
+        game.add.plugin(PhaserInput.Plugin);
+
         timer = game.time.create(false);
         this.getStorageTimer();
 
@@ -57,6 +68,8 @@ var redoState = {
 
         placeholdertext = game.add.text(50,500,"Oh no, you messed up. You have to clean the\npotions room before you can try again", style);
         this.explode();
-
+        this.override = game.add.inputField(game.world.width - 200, game.world.height - 20);
+        button = game.add.button(game.world.width - 40, game.world.height - 20, 'buttonoverride', actionOnClick, this, 1, 0, 2);
+        button.onInputUp.add(this.passtostart, this);
   }
 };

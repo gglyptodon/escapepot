@@ -10,6 +10,8 @@ var playState = {
     resmd5: [],
     numInputs: 4,
     create: function(){
+        // so restart works as if from start
+        localStorage.setItem("escapepot_localstoragetimer", 0);
         background = game.add.tileSprite(0, 0, 800, 600, 'backgroundplay');
 
         var style = { font: "bold 16px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle" };
@@ -73,6 +75,7 @@ var playState = {
         if (this.are_inputs_valid()){
             game.state.start('win');
         }else{
+            localStorage.setItem("escapepot_localstoragetimer", globalTimer);
             game.state.start('redo');
         }
     },

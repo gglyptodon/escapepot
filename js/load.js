@@ -1,3 +1,5 @@
+globalTimer = 300;
+
 var loadState = {
     preload: function(){
         // buttons
@@ -5,6 +7,7 @@ var loadState = {
         game.load.spritesheet('buttonredo', 'assets/btn/button_redo.png', 96, 32);
         game.load.spritesheet('buttonrestart', 'assets/btn/button_restart.png', 96, 32);
         game.load.spritesheet('buttonmix', 'assets/btn/button_mix.png', 96, 32);
+        game.load.spritesheet('buttonoverride','assets/btn/override.png',32,16);
         // stir direction buttons
         game.load.spritesheet('cw', 'assets/btn/cw.png', 32, 32);
         game.load.spritesheet('ccw', 'assets/btn/ccw.png', 32, 32);
