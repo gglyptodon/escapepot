@@ -1,5 +1,5 @@
 var menuState = {
-    timeToWait: 0.1*30,
+    timeToWait: 0.1*3000,
     isStillWaiting: function() {
         console.log("check waiting", localStorage.getItem("escapepot_localstoragetimer"));
         if (localStorage.getItem("escapepot_localstoragetimer") > 0 ) {

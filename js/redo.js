@@ -2,7 +2,7 @@ var timer;
 var countdown;
 var text;
 var redoState = {
-  timeToWait: 0.1*30,
+  timeToWait: 0.1*3000,
 
   getStorageTimer: function(){
         if (localStorage.getItem("escapepot_localstoragetimer") === 0 || localStorage.getItem("escapepot_localstoragetimer") === undefined) {
